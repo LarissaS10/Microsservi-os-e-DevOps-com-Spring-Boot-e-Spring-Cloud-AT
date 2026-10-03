@@ -1,0 +1,22 @@
+name: Build fornecedores-service
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar o Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Compilar com o Maven
+        run: mvn -B package
+        working-directory: api-vendas-9/fornecedores-service
